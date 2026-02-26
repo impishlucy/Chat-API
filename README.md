@@ -21,7 +21,7 @@
 </div>
 
 ### Project Purpose
-Nexus-API serves as the **Decoupled Backend** for my Nexus App.
+Nexus-API serves as the Decoupled Backend for my Nexus App. This App is a **Demo Project**.
 </br>
 It handles all logic, security, and database interactions for the [Nexus-UI](https://github.com/impishlucy/Nexus-UI). 
 
