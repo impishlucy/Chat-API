@@ -1,13 +1,9 @@
 <div align="center">
 
-<img src="./logo.png" alt="Nexus Logo" width="120" height="auto" />
-
-<h1>N E X U S - A P I</h1>
+<h1>Chat - API</h1>
 
 <p>
-  <strong>Development is paused until i reworked my personal website.</strong>
-  </br>
-  <strong>The Backend for Nexus. a Fullstack Social WebApp mixing X & Discord.</strong>
+  <strong>The Backend for my Chat on my Website.</strong>
 </p>
 
 [![wip](https://img.shields.io/badge/status-work%20in%20progress-green)](#)
@@ -20,22 +16,29 @@
 
 </div>
 
-### Project Purpose
-Nexus-API serves as the Decoupled Backend for my Nexus App. This App is a **Demo Project**.
+## Project Purpose
+This Repo is a **Demo** and not the actual full code of my Chat on my Website.
 </br>
-It handles all logic, security, and database interactions for the [Nexus-UI](https://github.com/impishlucy/Nexus-UI). 
+This API serves as a Decoupled Backend for my Chat.
+</br>
+It handles all logic, security, and database interactions for the [UI](https://github.com/impishlucy/Chat-UI). 
 
 ## Development Status
 
 ### Implemented
-* Nothing, i just started.
+* 
 
 ### Planned (In Development)
 * **User Accounts:** Secure registration logic and authentication.
 * **Database Foundation:** Scalable SQL schema using Prisma and Postgres.
-* **Realtime Engine:** WebSocket implementation for Discord-style group chats and 1:1 DMs.
-* **Local AI Moderation:** Integrated local filters for image/text scanning and custom profanity filters.
-* **Admin Tools:** API endpoints for user management and filter updates.
+* **Chat System:** 1:1 "realtime" Chatrooms and a Overview for the Backend.
+* **Ratelimits:** Ratelimiting API Requests to minimize DDOS attacks. (Not included in Demo Version)
+* **Chat Filters:** Filtering of Messages for Insluts, Scams or Spam. (Not included in Demo Version) 
+
+## Infos for Employers
+I'm currently looking for a Job, if you want to look at the full Code of my Website,
+</br>
+please contact me over E-Mail or my Website Chat, thank you.
 
 ---
 <div align="center">
