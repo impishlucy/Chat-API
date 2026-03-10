@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id          Int     @id @default(autoincrement())
+  username    String  @unique
+  password    String
+  isAdmin     Boolean @default(false)
+  isSupporter Boolean @default(false)
+
+  chats    Chat[]    @relation("ChatParticipants")
+  messages Message[]
+
+  @@index([id])
+}
+
+model Chat {
+  id       Int     @id @default(autoincrement())
+  isActive Boolean
+
+  participants User[]    @relation("ChatParticipants")
+  messages     Message[]
+
+  @@index([id])
+}
+
+model Message {
+  id      Int      @id @default(autoincrement())
+  message String
+  date    DateTime
+
+  chatId Int
+  chat   Chat @relation(fields: [chatId], references: [id], onDelete: Cascade)
+
+  senderId Int
+  sender   User @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([chatId])
+  @@index([senderId])
+}

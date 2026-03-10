@@ -17,23 +17,22 @@
 </div>
 
 ## Project Purpose
-This Repo is a **Demo** and not the actual full code of my Chat on my Website.
+This Repo is a **Demo** and not the actual full code of my Website.
 </br>
 This API serves as a Decoupled Backend for my Chat.
 </br>
-It handles all logic, security, and database interactions for the [UI](https://github.com/impishlucy/Chat-UI). 
+It handles logic, security, and database interactions for the [UI](https://github.com/impishlucy/Chat-UI). 
 
 ## Development Status
 
 ### Implemented
-* 
+* **Database Foundation:** Scalable SQL schema using Prisma and Postgres.
 
 ### Planned (In Development)
 * **User Accounts:** Secure registration logic and authentication.
-* **Database Foundation:** Scalable SQL schema using Prisma and Postgres.
-* **Chat System:** 1:1 "realtime" Chatrooms and a Overview for the Backend.
-* **Ratelimits:** Ratelimiting API Requests to minimize DDOS attacks. (Not included in Demo Version)
-* **Chat Filters:** Filtering of Messages for Insluts, Scams or Spam. (Not included in Demo Version) 
+* **Chat System:** 1:1 realtime Chatrooms
+* **Support View:** Overview of all Chats for the Backend.
+* **Moderation:** Options to Delete Chats, Users or issue Bans.
 
 ## Infos for Employers
 I'm currently looking for a Job, if you want to look at the full Code of my Website,
