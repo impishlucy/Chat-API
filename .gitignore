@@ -1,6 +1,5 @@
 # webstorm
 /.idea/
-/.ai/
 
 # compiled output
 /dist
