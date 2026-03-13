@@ -26,18 +26,11 @@ It handles logic, security, and database interactions for the [UI](https://githu
 ## Development Status
 
 ### Implemented
-* **Database Foundation:** Scalable SQL schema using Prisma and Postgres.
-
-### Planned (In Development)
+* **Database Foundation:** SQL using Prisma and Postgres.
 * **User Accounts:** Secure registration logic and authentication.
-* **Chat System:** 1:1 realtime Chatrooms
+* **Chat System:** 1:1 "realtime" Chatrooms
 * **Support View:** Overview of all Chats for the Backend.
-* **Moderation:** Options to Delete Chats, Users or issue Bans.
-
-## Infos for Employers
-I'm currently looking for a Job, if you want to look at the full Code of my Website,
-</br>
-please contact me over E-Mail or my Website Chat, thank you.
+* **Moderation:** Options to Delete Chats & Users.
 
 ---
 <div align="center">
