@@ -48,7 +48,7 @@ export class InternalService {
   }
 
   async deleteChat(user: User, data: DeleteDto) {
-    if (!user.isAdmin || !user.isSupporter) {
+    if (!user.isAdmin && !user.isSupporter) {
       throw new UnauthorizedException('Not Allowed');
     }
 
@@ -78,7 +78,7 @@ export class InternalService {
   }
 
   async deleteUser(user: User, data: DeleteDto) {
-    if (!user.isAdmin || !user.isSupporter) {
+    if (!user.isAdmin && !user.isSupporter) {
       throw new UnauthorizedException('Not Allowed');
     }
 

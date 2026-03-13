@@ -57,3 +57,4 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 # Remove generated Prisma
 /generated/
 src/constants.ts
+openapi.json

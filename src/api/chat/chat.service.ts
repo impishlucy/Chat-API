@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Injectable,
+  Logger,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -65,24 +66,21 @@ export class ChatService {
   }
 
   async getChatForUser(user: User, queryId?: number) {
-    let chatId = user.id;
+    let chatId: number;
     if (user.isAdmin || user.isSupporter) {
       if (!queryId) {
         throw new BadRequestException('Query parameter "chatId" is required');
-      } else {
-        chatId = queryId;
       }
+      chatId = queryId;
+    } else {
+      chatId = await this.getActiveChatForUser(user.id);
     }
 
-    const chat = await this.getActiveChatForUser(chatId);
-
-    if (!chat) {
-      throw new NotFoundException('Active chat not found for this user');
-    }
+    chatId = Number(chatId);
 
     const messages = await prisma.message.findMany({
       where: {
-        chatId: chat.id,
+        chatId: chatId,
       },
       select: {
         message: true,
@@ -108,14 +106,17 @@ export class ChatService {
   }
 
   async getChatUpdatesForUser(user: User, after: string, queryId?: number) {
-    let chatId = user.id;
+    let chatId: number;
     if (user.isAdmin || user.isSupporter) {
       if (!queryId) {
         throw new BadRequestException('Query parameter "chatId" is required');
-      } else {
-        chatId = queryId;
       }
+      chatId = queryId;
+    } else {
+      chatId = await this.getActiveChatForUser(user.id);
     }
+
+    chatId = Number(chatId);
 
     if (!after) {
       throw new BadRequestException('Query parameter "after" is required');
@@ -127,15 +128,9 @@ export class ChatService {
       throw new BadRequestException('Invalid "after" timestamp');
     }
 
-    const chat = await this.getActiveChatForUser(chatId);
-
-    if (!chat) {
-      throw new NotFoundException('No chat found for this user');
-    }
-
     const messages = await prisma.message.findMany({
       where: {
-        chatId: chat.id,
+        chatId: chatId,
         date: {
           gt: afterDate,
         },
@@ -168,26 +163,23 @@ export class ChatService {
       throw new BadRequestException('Message content is required');
     }
 
-    let chatId = user.id;
+    let chatId: number;
     if (user.isAdmin || user.isSupporter) {
       if (!queryId) {
         throw new BadRequestException('Query parameter "chatId" is required');
-      } else {
-        chatId = queryId;
       }
+      chatId = queryId;
+    } else {
+      chatId = await this.getActiveChatForUser(user.id);
     }
+
+    chatId = Number(chatId);
 
     // Call some message validation logic here to remove spam or inappropriate content.
 
-    const chat = await this.getActiveChatForUser(chatId);
-
-    if (!chat) {
-      throw new NotFoundException('Active chat not found for this user');
-    }
-
     await prisma.message.create({
       data: {
-        chatId: chat.id,
+        chatId: chatId,
         message: chatData,
         senderId: user.id,
         date: new Date(),
@@ -195,7 +187,8 @@ export class ChatService {
     });
   }
 
-  private async getActiveChatForUser(user: number) {
+  private async getActiveChatForUser(user: number): Promise<number> {
+    user = Number(user);
     const chat = await prisma.chat.findFirst({
       where: {
         participants: {
@@ -210,9 +203,9 @@ export class ChatService {
     });
 
     if (!chat) {
-      throw new NotFoundException('Active chat not found for this user');
+      throw new NotFoundException('No active chat found for this user');
     }
 
-    return chat;
+    return chat.id;
   }
 }
