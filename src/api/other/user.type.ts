@@ -4,4 +4,4 @@ export type User = {
   password: string;
   isAdmin: boolean;
   isSupporter: boolean;
-} | null;
+};

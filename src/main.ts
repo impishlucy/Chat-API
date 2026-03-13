@@ -6,6 +6,10 @@ import * as fs from 'fs';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: true,
+  });
+
   const config = new DocumentBuilder()
     .setTitle('Chat API')
     .setDescription('API Endpoints for my Chat System.')
@@ -17,6 +21,6 @@ async function bootstrap() {
 
   fs.writeFileSync('./openapi.json', JSON.stringify(document, null, 2));
 
-  await app.listen(3000);
+  await app.listen(5000);
 }
 void bootstrap();

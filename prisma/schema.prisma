@@ -2,8 +2,9 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "cjs"
 }
 
 datasource db {
@@ -11,11 +12,12 @@ datasource db {
 }
 
 model User {
-  id          Int     @id @default(autoincrement())
-  username    String  @unique
+  id          Int      @id @default(autoincrement())
+  username    String   @unique
   password    String
-  isAdmin     Boolean @default(false)
-  isSupporter Boolean @default(false)
+  isAdmin     Boolean  @default(false)
+  isSupporter Boolean  @default(false)
+  Ips         String[]
 
   chats    Chat[]    @relation("ChatParticipants")
   messages Message[]
@@ -24,8 +26,7 @@ model User {
 }
 
 model Chat {
-  id       Int     @id @default(autoincrement())
-  isActive Boolean
+  id Int @id @default(autoincrement())
 
   participants User[]    @relation("ChatParticipants")
   messages     Message[]
@@ -46,4 +47,9 @@ model Message {
 
   @@index([chatId])
   @@index([senderId])
+}
+
+model BannedIps {
+  id Int    @id @default(autoincrement())
+  ip String @unique
 }

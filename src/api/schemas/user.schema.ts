@@ -1,8 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class AuthPayloadDTO {
+export class UserDto {
   @ApiProperty()
   username: string;
   @ApiProperty()
-  password: string;
+  isAdmin: boolean;
+  @ApiProperty()
+  isSupporter: boolean;
 }
